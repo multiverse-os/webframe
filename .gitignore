@@ -1,0 +1,77 @@
+app/db/*
+app/db/models/
+app/db/models/*
+app/db/session/
+app/db/session/*
+
+# Development Helpers
+rails-example
+
+# Runtime Artifacts
+app/tmp/pids/*.pid
+
+# Compiling Artifacts
+app/cmd/starshipyard/starshipyard
+
+# Private Developer Notes
+development.notes.md
+
+# Library storage
+potential-libs
+
+# Datbase Files
+*.db
+app/db/*.db
+app/db/**
+app/db/kvstore
+app/db/kvstore/*
+
+# Text Editing Artificats
+*.swp
+*.swo
+
+################################################################################
+## Starshipyard                                                               ##
+################################################################################
+# Ignore all the local MVC files, so that development of the framework can  
+# continue on projects using the framework, using a differnet structure than 
+# rails uses (creation of a project); in favor of project exists in root folder
+# and the framework folder contains logic that is used across all projects. OR 
+# at least is a wide range of features usable for a wide range of projects 
+#
+################################################################################
+## MVC 
+#### Models 
+app/models/**/*.go
+
+#### Controllers
+app/controllers/**/*.go
+
+#### Views 
+app/views/**/*.go 
+
+#### Locales
+# TODO: Need to select out non-sample
+app/locales/**/*.yaml 
+app/locales/**/*.go 
+
+#### Jobs 
+app/jobs/**/*.go 
+
+#### Helpers
+app/helpers/**/*.go
+
+
+################################################################################
+## Other Project Files
+#### Temporary
+app/tmp/* 
+#### Config Files
+# TODO: Need to select out non-sample
+#app/config/*.yaml
+
+### Routes 
+# TODO: Will need to migrate project routes into the root folder, and migrate 
+#       the rest of the code into the framework folder. 
+
+

@@ -1,0 +1,9 @@
+[submodule "framework/database/data"]
+	path = framework/database/data
+	url = git@github.com:multiverse-os/data.git
+[submodule "framework/database/muid"]
+	path = framework/database/muid
+  url = git@github.com:multiverse-os/muid.git
+[submodule "io/ansi"]
+	path = io/ansi
+	url = git@github.com:multiverse-os/ansi.git
