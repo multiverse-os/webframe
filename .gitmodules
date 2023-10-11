@@ -1,0 +1,9 @@
+[submodule "io/ansi"]
+	path = io/ansi
+	url = git@github.com:multiverse-os/ansi.git
+[submodule "os/service"]
+	path = os/service
+	url = git@github.com:multiverse-os/service.git
+[submodule "event"]
+	path = event
+	url = git@github.com:multiverse-os/event.git

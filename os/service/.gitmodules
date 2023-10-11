@@ -1,0 +1,6 @@
+[submodule "pid"]
+	path = pid
+	url = git@github.com:multiverse-os/pid.git
+[submodule "signal"]
+	path = signal
+	url = git@github.com:multiverse-os/signal.git
