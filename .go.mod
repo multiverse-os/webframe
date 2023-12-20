@@ -11,3 +11,5 @@ require (
 )
 
 require golang.org/x/crypto v0.17.0 // indirect
+
+replace github.com/multiverse-os/maglev/app v0.1.0 => ./app
