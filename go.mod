@@ -10,7 +10,7 @@ require (
 	gopkg.in/yaml.v2 v2.4.0
 )
 
-replace github.com/multiverse-os/cli/terminal/ansi => github.com/multiverse-os/ansi v0.1.0
+//replace github.com/multiverse-os/cli/terminal/ansi => github.com/multiverse-os/ansi v0.1.0
 
 replace (
 	github.com/multiverse-os/cli/data => github.com/multiverse-os/data v0.1.0
