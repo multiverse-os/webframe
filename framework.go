@@ -8,11 +8,12 @@ import (
 	config "github.com/multiverse-os/maglev/config"
 	database "github.com/multiverse-os/maglev/database"
 	io "github.com/multiverse-os/maglev/io"
-	ansi "github.com/multiverse-os/maglev/io/ansi"
 	filesystem "github.com/multiverse-os/maglev/os/filesystem"
-	service "github.com/multiverse-os/maglev/os/service"
 	router "github.com/multiverse-os/maglev/router"
 	server "github.com/multiverse-os/maglev/server"
+
+	ansi "github.com/multiverse-os/ansi"
+	service "github.com/multiverse-os/service"
 )
 
 // TODO: The code overall found in this package is meant to provide access to

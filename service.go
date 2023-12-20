@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	service "github.com/multiverse-os/maglev/os/service"
+	service "github.com/multiverse-os/service"
 )
 
 // TODO: Could use a map[signal.Signal]func() error and then we can allow the

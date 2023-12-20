@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	ansi "github.com/multiverse-os/maglev/io/ansi"
+	ansi "github.com/multiverse-os/ansi"
 )
 
 type Directories struct {
