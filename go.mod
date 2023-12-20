@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/multiverse-os/ansi v0.1.0
 	github.com/multiverse-os/muid v0.1.0
-	github.com/multiverse-os/service v0.1.0
+	github.com/multiverse-os/service v0.1.1
 	golang.org/x/sys v0.15.0
 	gopkg.in/yaml.v2 v2.4.0
 )
