@@ -4,3 +4,6 @@
 [submodule "os/ansi"]
 	path = os/ansi
 	url = git@github.com:multiverse-os/ansi.git
+[submodule "os/service"]
+	path = os/service
+	url = git@github.com:multiverse-os/service.git

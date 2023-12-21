@@ -37,7 +37,7 @@ type Framework struct {
 	// initialzation happens for both types
 
 	Process     *service.Process
-	Directories filesystem.AppDirectories
+	Directories filesystem.Directories
 	Outputs     io.Outputs
 
 	Router *router.Mux
@@ -62,7 +62,7 @@ type Framework struct {
 
 // TODO: id still prefer if this was framework.App not framework.Framework
 func Init(cfg config.Settings) Framework {
-	service.DropPriviledges()
+	service.DropPrivileges()
 	service.SeedRandom()
 
 	cfg = config.Validate(cfg)

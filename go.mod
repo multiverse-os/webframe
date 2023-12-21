@@ -6,6 +6,7 @@ require (
 	github.com/multiverse-os/cli v0.1.0
 	github.com/multiverse-os/muid v0.1.0
 	github.com/multiverse-os/service v0.1.1
+	github.com/prologic/bitcask v0.3.10
 	golang.org/x/sys v0.15.0
 	gopkg.in/yaml.v2 v2.4.0
 )
@@ -18,6 +19,8 @@ exclude (
 	github.com/multiverse-os/ansi v0.1.0
 	github.com/multiverse-os/banner v0.1.0
 )
+
+replace github.com/multiverse-os/maglev/os/service => github.com/multiverse-os/service v0.1.1
 
 replace (
 	github.com/multiverse-os/cli/data => github.com/multiverse-os/data v0.1.0
@@ -34,6 +37,9 @@ require (
 	github.com/multiverse-os/cli/terminal/loading v0.1.0 // indirect
 	github.com/multiverse-os/cli/terminal/text/banner v0.1.0 // indirect
 	github.com/multiverse-os/maglev-app v0.1.1 // indirect
+	github.com/pkg/errors v0.9.1 // indirect
+	github.com/plar/go-adaptive-radix-tree v1.0.4 // indirect
 	golang.org/x/crypto v0.17.0 // indirect
+	golang.org/x/exp v0.0.0-20200228211341-fcea875c7e85 // indirect
 	golang.org/x/text v0.14.0 // indirect
 )

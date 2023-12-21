@@ -3,6 +3,8 @@ package keyvalue
 import (
 	"fmt"
 	//"errors"
+
+	bitcask "github.com/prologic/bitcask"
 )
 
 type Type int
@@ -15,9 +17,9 @@ const (
 )
 
 type Database interface {
-	Name() string
+	//Name() string
 	Path() string
-	Id() []byte
+	//Id() []byte
 
 	// Bitcask
 	//Stats() (bitcask.Stats, error)
@@ -50,8 +52,8 @@ type Database interface {
 func Open(databaseType Type, name, path string) (Database, error) {
 	switch databaseType {
 	case Bitcask:
-		fmt.Println("using bitcask")
-		//return bitcask.Open(name, path)
+		fmt.Printf("using bitcask name (not yet used): %v\n", name)
+		return bitcask.Open(path)
 	case BadgerDB:
 		fmt.Println("badger db not supported yet :(")
 		return nil, nil

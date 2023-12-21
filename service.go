@@ -21,7 +21,7 @@ func (f *Framework) InitSignalHandler() {
 	})
 }
 
-func (f Framework) WritePid() { f.Process.WritePid(f.Config.PidPath) }
+func (f Framework) WritePid() { f.Process.WritePid(f.Config.PidFilename) }
 func (f Framework) CleanPid() { f.Process.CleanPid() }
 
 func (f Framework) Start() {

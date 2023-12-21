@@ -75,7 +75,7 @@ func Load(path string) (config Settings, err error) {
 }
 
 func (ss Settings) InitializeDefaultConfig(path string) error {
-	return DefaultConfig().Save(path)
+	return DefaultConfig("app").Save(path)
 }
 
 func (ss Settings) Save(path string) error {
@@ -88,6 +88,8 @@ func (ss Settings) Save(path string) error {
 		if err != nil {
 			return nil
 		}
+	} else {
+		return err
 	}
 	return nil
 }
@@ -96,7 +98,7 @@ func (ss Settings) Save(path string) error {
 // TODO: Using localhost opens up to DNS rebind attacks
 func DefaultConfig(app string) Settings {
 	return Settings{
-		Name:        "maglev",
+		Name:        "app",
 		Environment: "development",
 		Address:     "localhost",
 		Port:        3000,
@@ -115,15 +117,18 @@ func DefaultConfig(app string) Settings {
 
 func Validate(config Settings) Settings {
 	if len(config.Name) == 0 {
-		config.Name = DefaultConfig().Name
+		config.Name = DefaultConfig("app").Name
 	}
 	// TODO: Need more validations for all the individual fields
 	// TODO: Port needs to only support actual ports 1 - ~65000
-	if len(config.PidPath) == 0 {
-		config.PidPath = "app/tmp/pids/" + DefaultConfig().Name + ".pid"
+	if len(config.PidFilename) == 0 {
+		config.PidFilename = "app/tmp/pids/" + config.Name + ".pid"
 	}
 	if len(config.Directories.Data) == 0 {
-		config.Directories.Data = "~/.local/share/" + DefaultConfig().Name
+		config.Directories.Data = "~/.local/share/maglev/" + config.Name
+	}
+	if len(config.Directories.Cache) == 0 {
+		config.Directories.Cache = "~/.cache/maglev/" + config.Name
 	}
 	return config
 }
