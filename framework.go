@@ -62,7 +62,7 @@ type Framework struct {
 
 // TODO: id still prefer if this was framework.App not framework.Framework
 func Init(cfg config.Settings) Framework {
-	service.DropPrivileges()
+	service.DropPrivs()
 	service.SeedRandom()
 
 	cfg = config.Validate(cfg)

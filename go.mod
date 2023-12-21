@@ -20,8 +20,6 @@ exclude (
 	github.com/multiverse-os/banner v0.1.0
 )
 
-replace github.com/multiverse-os/maglev/os/service => github.com/multiverse-os/service v0.1.1
-
 replace (
 	github.com/multiverse-os/cli/data => github.com/multiverse-os/data v0.1.0
 	github.com/multiverse-os/cli/terminal/ansi => github.com/multiverse-os/ansi v0.1.0
@@ -29,7 +27,10 @@ replace (
 	github.com/multiverse-os/cli/terminal/text/banner => github.com/multiverse-os/banner v0.1.0
 )
 
-replace github.com/multiverse-os/maglev-app v0.1.1 => ./app
+replace (
+	github.com/multiverse-os/maglev-app v0.1.1 => ./app
+	github.com/multiverse-os/maglev/os/service v0.1.1 => ./os/service
+)
 
 require (
 	github.com/multiverse-os/cli/data v0.1.0 // indirect
