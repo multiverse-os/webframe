@@ -2,6 +2,7 @@ package maglev
 
 import (
 	"fmt"
+	"math/rand"
 	"strings"
 	"time"
 
@@ -28,7 +29,7 @@ import (
 // As it grows from this original file it should be broken up into logical
 // sub-files.
 type Framework struct {
-	Config config.Settings
+	Config *config.Settings
 
 	// TODO: For now we will just have a Debug bool, but this represents later
 	// production vs. development paradigm; and we need to have separate
@@ -61,9 +62,10 @@ type Framework struct {
 }
 
 // TODO: id still prefer if this was framework.App not framework.Framework
-func Init(cfg config.Settings) Framework {
+func Init(cfg *config.Settings) Framework {
 	service.DropPrivs()
-	service.SeedRandom()
+	//service.SeedRandom()
+	rand.Seed(time.Now().UnixNano())
 
 	cfg = config.Validate(cfg)
 

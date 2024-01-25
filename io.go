@@ -5,15 +5,15 @@ import (
 	io "github.com/multiverse-os/maglev/io"
 )
 
-func DefaultOutputs(cfg config.Settings) io.Outputs {
+func DefaultOutputs(cfg *config.Settings) io.Outputs {
 	return append(TerminalOutput(cfg), LogOutput(cfg)...)
 }
 
-func LogOutput(cfg config.Settings) io.Outputs {
+func LogOutput(cfg *config.Settings) io.Outputs {
 	return io.Outputs{}
 }
 
-func TerminalOutput(cfg config.Settings) io.Outputs {
+func TerminalOutput(cfg *config.Settings) io.Outputs {
 	return io.Outputs{io.TerminalOutput().Prefix(cfg.Name)}
 }
 

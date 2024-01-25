@@ -62,7 +62,7 @@ type Settings struct {
 // TODO: Separate out application specific settings from config library logic so
 // we can re-use this code.
 
-func Load(path string) (config Settings, err error) {
+func Load(path string) (config *Settings, err error) {
 	yamlFile, err := ioutil.ReadFile(path)
 	if err != nil {
 		return config, err
@@ -96,8 +96,8 @@ func (ss Settings) Save(path string) error {
 
 // TODO: We need to also parse out environmental variables
 // TODO: Using localhost opens up to DNS rebind attacks
-func DefaultConfig(app string) Settings {
-	return Settings{
+func DefaultConfig(app string) *Settings {
+	return &Settings{
 		Name:        "app",
 		Environment: "development",
 		Address:     "localhost",
@@ -115,7 +115,7 @@ func DefaultConfig(app string) Settings {
 	}
 }
 
-func Validate(config Settings) Settings {
+func Validate(config *Settings) *Settings {
 	if len(config.Name) == 0 {
 		config.Name = DefaultConfig("app").Name
 	}
