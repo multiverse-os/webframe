@@ -50,7 +50,7 @@ type Framework struct {
 	servers   map[server.Type]server.Server
 
 	Controllers map[string]Controller
-	//Models      map[string]Model
+	Models      map[string]Model
 
 	// TODO: Jobs should probably be a channel?
 	//Jobs []Job
@@ -76,7 +76,7 @@ func Init(cfg *config.Settings) Framework {
 		servers:     make(map[server.Type]server.Server),
 		databases:   make(map[database.StoreType]*database.Database),
 		Controllers: make(map[string]Controller),
-		//Models:      make(map[string]Model),
+		Models:      make(map[string]Model),
 		// TODO: We should establish some standardized middleware we attach for
 		// greater control over our routing infrastructure
 		Router: router.New(),
