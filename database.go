@@ -4,6 +4,9 @@ import (
 	database "github.com/multiverse-os/maglev/database"
 )
 
+// TODO: Need multiple k/v stores, one will be for session, one for cache, then
+// maybe build models over k/v or just use an object db
+
 //type Database struct {
 //	*database.Database
 //

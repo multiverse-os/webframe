@@ -4,7 +4,8 @@ import (
 	"fmt"
 	//"errors"
 
-	bitcask "github.com/prologic/bitcask"
+	bitcask "git.mills.io/prologic/bitcask"
+	pogreb "github.com/akrylysov/pogreb"
 )
 
 type Type int
@@ -12,6 +13,7 @@ type Type int
 const (
 	Undefined Type = iota
 	BadgerDB
+	Pogreb
 	Bitcask
 	LevelDB
 )
@@ -27,10 +29,10 @@ type Database interface {
 	Put(key []byte, value []byte) error
 	Delete(key []byte) error
 
-	Len() int
+	//Len() int
 	Close() error
 
-	Keys() chan []byte
+	//Keys() chan []byte
 	//Has(key []byte) bool
 	//Sync() error
 	//Backup(path string) error
@@ -54,6 +56,9 @@ func Open(databaseType Type, name, path string) (Database, error) {
 	case Bitcask:
 		fmt.Printf("using bitcask name (not yet used): %v\n", name)
 		return bitcask.Open(path)
+	case Pogreb:
+		fmt.Println("starting support for pogreb which is good for reads")
+		return pogreb.Open(path, nil)
 	case BadgerDB:
 		fmt.Println("badger db not supported yet :(")
 		return nil, nil
