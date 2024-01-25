@@ -18,7 +18,7 @@ const (
 
 type Database interface {
 	//Name() string
-	Path() string
+	//Path() string
 	//Id() []byte
 
 	// Bitcask

@@ -27,7 +27,7 @@ func main() {
 		// outputs defined by our higher level application [consistency!]
 		//Outputs:     cli.Outputs{framework.DefaultOutputs()},
 		Version:     cli.Version{Major: 0, Minor: 1, Patch: 1},
-		Description: "A command-line tool for controling the maglev server, scaffolding boilerplate code, and executing developer defined commands",
+		Description: "A command-line tool for controlling the maglev server, scaffolding boilerplate code, and executing developer defined commands",
 		GlobalFlags: cli.Flags(
 			cli.Flag{
 				Category:    "Server",
