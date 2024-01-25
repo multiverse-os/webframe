@@ -46,11 +46,11 @@ type Framework struct {
 	// TODO: Decide if we prefer naming it Database, and accessing it through
 	//           KV(storeType) or Document(storeType) or Columnar(storeType)
 	// and if we need to set server.Server to a pointer
-	databases map[string]*database.Database
+	databases map[database.StoreType]*database.Database
 	servers   map[server.Type]server.Server
 
 	Controllers map[string]Controller
-	Models      map[string]Model
+	//Models      map[string]Model
 
 	// TODO: Jobs should probably be a channel?
 	//Jobs []Job
@@ -74,9 +74,9 @@ func Init(cfg *config.Settings) Framework {
 		Outputs:     DefaultOutputs(cfg),
 		Process:     service.ParseProcess(),
 		servers:     make(map[server.Type]server.Server),
-		databases:   make(map[string]*database.Database),
+		databases:   make(map[database.StoreType]*database.Database),
 		Controllers: make(map[string]Controller),
-		Models:      make(map[string]Model),
+		//Models:      make(map[string]Model),
 		// TODO: We should establish some standardized middleware we attach for
 		// greater control over our routing infrastructure
 		Router: router.New(),
@@ -87,20 +87,20 @@ func Init(cfg *config.Settings) Framework {
 	return framework
 }
 
-func (f Framework) NewDatabase(name string) {
+func (f *Framework) NewDatabase(name string) {
 	name = strings.ToLower(name)
-	f.databases[name] = &database.Database{
+	f.databases[database.Model] = &database.Database{
 		Name: name,
 	}
 }
 
-func (f Framework) NewModel(name string) {
-	name = strings.ToLower(name)
-	f.Models[name] = Model{
-		Name:      name,
-		Framework: f,
-	}
-}
+//func (f *Framework) NewModel(name string) {
+//	name = strings.ToLower(name)
+//	f.Models[name] = Model{
+//		Name:      name,
+//		Framework: f,
+//	}
+//}
 
 func (f *Framework) NewController(name string) {
 	name = strings.ToLower(name)
