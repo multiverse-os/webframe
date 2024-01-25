@@ -41,9 +41,15 @@ func (f *Framework) KV(storeType database.StoreType) *database.Database {
 }
 
 // TODO: Init to default db type for Model type
-func (f *Framework) DB() *database.Database {
-	if f.databases[ModelStore] == nil {
-		f.databases[ModelStore] = database.OpenBitcask(ModelStore.String())
+func (f *Framework) DB(storeType database.StoreType) *database.Database {
+	if f.databases[storeType] == nil {
+		f.databases[storeType] = database.OpenBitcask(storeType.String())
 	}
-	return f.databases[ModelStore]
+	return f.databases[storeType]
 }
+
+func (f *Framework) ModelDB() *database.Database   { return f.DB(ModelStore) }
+func (f *Framework) CacheDB() *database.Database   { return f.DB(CacheStore) }
+func (f *Framework) SessionDB() *database.Database { return f.DB(SessionStore) }
+func (f *Framework) JobDB() *database.Database     { return f.DB(JobStore) }
+func (f *Framework) DataDB() *database.Database    { return f.DB(DataStore) }
