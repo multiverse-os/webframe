@@ -94,13 +94,13 @@ func (f *Framework) NewDatabase(name string) {
 	}
 }
 
-//func (f *Framework) NewModel(name string) {
-//	name = strings.ToLower(name)
-//	f.Models[name] = Model{
-//		Name:      name,
-//		Framework: f,
-//	}
-//}
+func (f *Framework) NewModel(name string) {
+	name = strings.ToLower(name)
+	f.Models[name] = Model{
+		Name:      name,
+		Framework: f,
+	}
+}
 
 func (f *Framework) NewController(name string) {
 	name = strings.ToLower(name)

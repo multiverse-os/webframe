@@ -3,7 +3,7 @@ package maglev
 import database "github.com/multiverse-os/maglev/database"
 
 type Model struct {
-	Framework
+	Framework *Framework
 
 	Database *database.Database
 
