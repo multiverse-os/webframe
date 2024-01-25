@@ -57,6 +57,7 @@ const (
 const (
 	Bitcask  = keyvalue.Bitcask
 	BadgerDB = keyvalue.BadgerDB
+	Pogreb   = keyvalue.Pogreb
 )
 
 // //////////////////////////////////////////////////////////////////////////////
@@ -103,4 +104,9 @@ func OpenKV(kvType keyvalue.Type, storeType StoreType, path string) *Database {
 func OpenBitcask(name string) *Database {
 	storeType := MarshalStoreType(name)
 	return OpenKV(keyvalue.Bitcask, storeType, ("app/db/" + name))
+}
+
+func OpenPogreb(name string) *Database {
+	storeType := MarshalStoreType(name)
+	return OpenKV(keyvalue.Pogreb, storeType, ("app/db/" + name))
 }
