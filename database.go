@@ -5,11 +5,11 @@ import (
 )
 
 const (
-	Data    = database.Data
-	Session = database.Session
-	Model   = database.Model
-	Cache   = database.Cache
-	Job     = database.Job
+	DataStore    = database.Data
+	SessionStore = database.Session
+	ModelStore   = database.Model
+	CacheStore   = database.Cache
+	JobStore     = database.Job
 )
 
 //func MarshalStoreType(typeStr string) database.StoreType {
