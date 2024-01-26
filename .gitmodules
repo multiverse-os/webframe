@@ -1,6 +1,6 @@
 [submodule "app"]
 	path = app
-	url = git@github.com:multiverse-os/maglev-app.git
+	url = git@github.com:multiverse-os/maglev.git
 [submodule "os/ansi"]
 	path = os/ansi
 	url = git@github.com:multiverse-os/ansi.git
