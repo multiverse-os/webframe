@@ -1,6 +1,6 @@
-package maglev
+package webkit
 
-import database "github.com/multiverse-os/maglev/database"
+import database "github.com/multiverse-os/webkit/database"
 
 type Model struct {
 	Framework *Framework

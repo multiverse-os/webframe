@@ -3,8 +3,8 @@ package server
 import (
 	"errors"
 
-	router "github.com/multiverse-os/maglev/router"
-	http "github.com/multiverse-os/maglev/server/http"
+	router "github.com/multiverse-os/webkit/router"
+	http "github.com/multiverse-os/webkit/server/http"
 )
 
 type Type uint

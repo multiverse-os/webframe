@@ -1,7 +1,7 @@
 package html
 
 import (
-	attribute "github.com/multiverse-os/maglev/html/attribute"
+	attribute "github.com/multiverse-os/webkit/html/attribute"
 )
 
 //var NoAttributes = []Attribute{}

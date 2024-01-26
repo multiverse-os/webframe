@@ -1,4 +1,4 @@
-package maglev
+package webkit
 
 //type Job struct {
 //	Name   string

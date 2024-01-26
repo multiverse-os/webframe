@@ -3,9 +3,9 @@ package html
 import (
 	"strings"
 
-	attribute "github.com/multiverse-os/maglev/html/attribute"
-	entity "github.com/multiverse-os/maglev/html/entity"
-	text "github.com/multiverse-os/maglev/html/text"
+	attribute "github.com/multiverse-os/webkit/html/attribute"
+	entity "github.com/multiverse-os/webkit/html/entity"
+	text "github.com/multiverse-os/webkit/html/text"
 )
 
 const DOCTYPE = `DOCTYPE`

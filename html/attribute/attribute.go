@@ -4,8 +4,8 @@ import (
 	"strconv"
 	"strings"
 
-	entity "github.com/multiverse-os/maglev/html/entity"
-	text "github.com/multiverse-os/maglev/html/text"
+	entity "github.com/multiverse-os/webkit/html/entity"
+	text "github.com/multiverse-os/webkit/html/text"
 )
 
 const defaultRowValue = "3"

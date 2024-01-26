@@ -1,4 +1,4 @@
-package maglev
+package webkit
 
 // TODO: This is the default functionality we provide the View object, we
 // 'inherit' it through the embedding functionality

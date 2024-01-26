@@ -4,8 +4,8 @@ import (
 	"errors"
 	"strings"
 
-	attribute "github.com/multiverse-os/maglev/html/attribute"
-	entity "github.com/multiverse-os/maglev/html/entity"
+	attribute "github.com/multiverse-os/webkit/html/attribute"
+	entity "github.com/multiverse-os/webkit/html/entity"
 )
 
 // [SECURITY] TODO: Every link that goes outside should have target="_no_rel" to prevent certian types of XSS

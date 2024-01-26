@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	database "github.com/multiverse-os/maglev/database"
+	database "github.com/multiverse-os/webkit/database"
 
 	// TODO: Should be submodule, ideally all packages will be submodules so there
 	// are no third party dependencies.

@@ -1,8 +1,8 @@
-package maglev
+package webkit
 
 import (
-	config "github.com/multiverse-os/maglev/config"
-	io "github.com/multiverse-os/maglev/io"
+	config "github.com/multiverse-os/webkit/config"
+	io "github.com/multiverse-os/webkit/io"
 )
 
 func DefaultOutputs(cfg *config.Settings) io.Outputs {

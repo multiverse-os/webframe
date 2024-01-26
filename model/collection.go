@@ -3,7 +3,7 @@ package model
 //import (
 //	"time"
 //
-//  record "github.com/multiverse-os/maglev/model/record"
+//  record "github.com/multiverse-os/webkit/model/record"
 //)
 //
 //type SortDirection uint8

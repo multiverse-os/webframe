@@ -1,7 +1,7 @@
-package maglev
+package webkit
 
 import (
-	server "github.com/multiverse-os/maglev/server"
+	server "github.com/multiverse-os/webkit/server"
 )
 
 func (f *Framework) HTTP() server.Server {
