@@ -1,4 +1,4 @@
-package maglev
+package webkit
 
 type Environment uint8
 

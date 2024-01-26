@@ -1,7 +1,7 @@
-package maglev
+package webkit
 
 import (
-	database "github.com/multiverse-os/maglev/database"
+	database "github.com/multiverse-os/webkit/database"
 )
 
 const (

@@ -1,4 +1,4 @@
-package maglev
+package webkit
 
 //type CollectionRouter interface {
 //	Index(b http.ResponseWriter, request *http.Request)

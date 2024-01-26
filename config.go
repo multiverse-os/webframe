@@ -1,7 +1,7 @@
-package maglev
+package webkit
 
 import (
-	config "github.com/multiverse-os/maglev/config"
+	config "github.com/multiverse-os/webkit/config"
 )
 
 type Config *config.Settings

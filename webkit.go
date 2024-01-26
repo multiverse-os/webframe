@@ -1,4 +1,4 @@
-package maglev
+package webkit
 
 import (
 	"fmt"
@@ -6,12 +6,12 @@ import (
 	"strings"
 	"time"
 
-	config "github.com/multiverse-os/maglev/config"
-	database "github.com/multiverse-os/maglev/database"
-	io "github.com/multiverse-os/maglev/io"
-	filesystem "github.com/multiverse-os/maglev/os/filesystem"
-	router "github.com/multiverse-os/maglev/router"
-	server "github.com/multiverse-os/maglev/server"
+	config "github.com/multiverse-os/webkit/config"
+	database "github.com/multiverse-os/webkit/database"
+	io "github.com/multiverse-os/webkit/io"
+	filesystem "github.com/multiverse-os/webkit/os/filesystem"
+	router "github.com/multiverse-os/webkit/router"
+	server "github.com/multiverse-os/webkit/server"
 
 	ansi "github.com/multiverse-os/ansi"
 	service "github.com/multiverse-os/service"

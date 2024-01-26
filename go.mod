@@ -1,4 +1,4 @@
-module github.com/multiverse-os/maglev
+module github.com/multiverse-os/webkit
 
 go 1.19
 
@@ -6,7 +6,7 @@ require (
 	git.mills.io/prologic/bitcask v1.0.2
 	github.com/akrylysov/pogreb v0.10.2
 	github.com/multiverse-os/cli v0.1.0
-	github.com/multiverse-os/maglev-app v0.1.1
+	github.com/multiverse-os/maglev v0.1.1
 	github.com/multiverse-os/muid v0.1.0
 	github.com/multiverse-os/service v0.1.2
 	golang.org/x/sys v0.15.0
@@ -29,8 +29,8 @@ replace (
 	github.com/multiverse-os/cli/terminal/text/banner => github.com/multiverse-os/banner v0.1.0
 )
 
-//github.com/multiverse-os/maglev/os/service v0.2.1 => ./os/service
-replace github.com/multiverse-os/maglev-app v0.1.1 => ./app
+//github.com/multiverse-os/webkit/os/service v0.2.1 => ./os/service
+replace github.com/multiverse-os/maglev v0.1.1 => ./app
 
 require (
 	github.com/abcum/lcp v0.0.0-20201209214815-7a3f3840be81 // indirect
