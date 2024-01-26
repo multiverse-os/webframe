@@ -28,7 +28,7 @@ replace (
 )
 
 //github.com/multiverse-os/webkit/os/service v0.2.1 => ./os/service
-replace github.com/multiverse-os/maglev v0.1.1 => ./app
+//replace github.com/multiverse-os/maglev v0.1.1 => ./app
 
 require (
 	github.com/abcum/lcp v0.0.0-20201209214815-7a3f3840be81 // indirect
