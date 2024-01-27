@@ -1,5 +1,7 @@
 package model
 
+import "time"
+
 //import (
 //	"time"
 //
@@ -25,15 +27,20 @@ package model
 //	IsSorted bool
 //	Records  []*Record
 //}
-//
-//type Collection struct {
-//	Name          string
-//	Records       []*Record
-//	Indexes       []*Index
-//	LastUpdatedAt time.Time
-//	History       chan *Record
-//}
-//
+
+type Collection struct {
+	Model *Model
+
+	Name string
+	//Records       []*Record
+	//Indexes       []*Index
+	LastUpdatedAt time.Time
+	//History       chan *Record
+}
+
+// TODO: If we track changes then we can roll back, and depending on how much
+//       we save we can selectively rollback
+
 //// Collections ////////////////////////////////////////////////////////////////
 //func (self *Collection) StepBackwards() (success bool, err error) {
 //	// TODO: Take last item from the history, remove(pop) it. Then use this item

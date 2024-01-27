@@ -8,67 +8,28 @@ import (
 	keyvalue "github.com/multiverse-os/webkit/database/keyvalue"
 )
 
-// Basic enumerator
-type StoreType int // should be uint8 but wait till later stage (bc stream gievs progression and chances to show how to imrpove things!!
-
-const (
-	Data StoreType = iota
-	Session
-	Model
-	Cache
-	Job
-)
-
-func MarshalStoreType(typeStr string) StoreType {
-	switch typeStr {
-	case Session.String():
-		return Session
-	case Model.String():
-		return Model
-	case Cache.String():
-		return Cache
-	case Job.String():
-		return Job
-	default:
-		return Data
-	}
-}
-
-func (st StoreType) String() string {
-	switch st {
-	case Session:
-		return "session"
-	case Model:
-		return "model"
-	case Cache:
-		return "cache"
-	case Job:
-		return "job"
-	default: // Data
-		return "data"
-	}
-}
-
 // Alias
 const (
 	KV = KeyValue
 )
 
 const (
-	Bitcask  = keyvalue.Bitcask
-	BadgerDB = keyvalue.BadgerDB
-	Pogreb   = keyvalue.Pogreb
+	Bitcask = keyvalue.Bitcask
+	Pogreb  = keyvalue.Pogreb
+	//BadgerDB = keyvalue.BadgerDB
 )
 
 // //////////////////////////////////////////////////////////////////////////////
 type DatabaseType uint8
 
 const (
-	Undefined DatabaseType = iota
+	UndefinedDatabase DatabaseType = iota
 	KeyValue
-	Document
-	Columnar
-	Graph
+	//AppendOnly / TimeSeries
+	// Something but forgot
+	//Document
+	//Columnar
+	//Graph
 	//ColumnOriented
 	//RowOriented
 )

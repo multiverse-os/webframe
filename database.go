@@ -5,11 +5,10 @@ import (
 )
 
 const (
-	DataStore    = database.Data
-	SessionStore = database.Session
-	ModelStore   = database.Model
-	CacheStore   = database.Cache
-	JobStore     = database.Job
+	UndefinedStoreType = database.UndefinedStoreType
+	SessionStore       = database.Session
+	ModelStore         = database.Model
+	CacheStore         = database.Cache
 )
 
 //func MarshalStoreType(typeStr string) database.StoreType {
@@ -23,9 +22,9 @@ const (
 // maybe build models over k/v or just use an object db
 
 type Database struct {
-	*database.Database
-
 	Framework *Framework
+
+	//*database.Database
 
 	Name string
 	Path string
@@ -51,5 +50,6 @@ func (f *Framework) DB(storeType database.StoreType) *database.Database {
 func (f *Framework) ModelDB() *database.Database   { return f.DB(ModelStore) }
 func (f *Framework) CacheDB() *database.Database   { return f.DB(CacheStore) }
 func (f *Framework) SessionDB() *database.Database { return f.DB(SessionStore) }
-func (f *Framework) JobDB() *database.Database     { return f.DB(JobStore) }
-func (f *Framework) DataDB() *database.Database    { return f.DB(DataStore) }
+
+//func (f *Framework) JobDB() *database.Database     { return f.DB(JobStore) }
+//func (f *Framework) DataDB() *database.Database    { return f.DB(DataStore) }

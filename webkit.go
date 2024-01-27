@@ -94,6 +94,7 @@ func (f *Framework) NewDatabase(name string) {
 	}
 }
 
+// TODO: Need at least database, well no i guess it has to be the model database
 func (f *Framework) NewModel(name string) {
 	name = strings.ToLower(name)
 	f.Models[name] = Model{
