@@ -11,6 +11,10 @@ const (
 	CacheStore         = database.Cache
 )
 
+// TODO: We have all 3 necessary for a basic user application app, while we
+// still would like to be able to call them individually, a single call would be
+// nice
+
 //func MarshalStoreType(typeStr string) database.StoreType {
 //	switch typeStr {
 //	case Session.String():
@@ -32,11 +36,22 @@ type Database struct {
 	StoreType database.StoreType
 }
 
+// TODO: This database.Database sucks and why do we have a separate one here? It
+// looks like this is all very undecided, it was switched up, and I added two KV
+// databases.
 func (f *Framework) KV(storeType database.StoreType) *database.Database {
 	if f.databases[storeType] == nil {
 		f.databases[storeType] = database.OpenBitcask(storeType.String())
 	}
 	return f.databases[storeType]
+}
+
+// TODO: This simplifies initializing each database.
+func (f *Framework) InitializeDBs() []*database.Database {
+	f.KV(ModelStore)
+	f.KV(CacheStore)
+	f.KV(SessionStore)
+	return f.databases
 }
 
 // TODO: Init to default db type for Model type
@@ -47,9 +62,24 @@ func (f *Framework) DB(storeType database.StoreType) *database.Database {
 	return f.databases[storeType]
 }
 
-func (f *Framework) ModelDB() *database.Database   { return f.DB(ModelStore) }
-func (f *Framework) CacheDB() *database.Database   { return f.DB(CacheStore) }
-func (f *Framework) SessionDB() *database.Database { return f.DB(SessionStore) }
+// TODO: Id like to change the names, like app.Cache or app.Sessions
+// and this should be maybe Database()
+func (f *Framework) ModelDB() *database.Database {
+	return f.DB(ModelStore).Store
+}
 
-//func (f *Framework) JobDB() *database.Database     { return f.DB(JobStore) }
-//func (f *Framework) DataDB() *database.Database    { return f.DB(DataStore) }
+func (f *Framework) Cache() *database.Database {
+	return f.DB(CacheStore).Store
+}
+
+func (f *Framework) Sessions() *database.Database {
+	return f.DB(SessionStore).Store
+}
+
+//func (f *Framework) JobDB() *database.Database     {
+// return f.DB(JobStore).Store
+// }
+
+//func (f *Framework) DataDB() *database.Database    {
+// return f.DB(DataStore).Store
+//}
