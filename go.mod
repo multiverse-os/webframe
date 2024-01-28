@@ -1,4 +1,4 @@
-module github.com/multiverse-os/webkit
+module github.com/multiverse-os/webframe
 
 go 1.19
 
@@ -27,7 +27,7 @@ replace (
 	github.com/multiverse-os/cli/terminal/text/banner => github.com/multiverse-os/banner v0.1.0
 )
 
-//replace github.com/multiverse-os/webkit/os/service v0.2.1 => ./os/service
+//replace github.com/multiverse-os/webframe/os/service v0.2.1 => ./os/service
 replace github.com/multiverse-os/maglev v0.1.1 => ./app
 
 require (
