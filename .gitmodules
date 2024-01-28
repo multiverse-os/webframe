@@ -4,6 +4,3 @@
 [submodule "os/service"]
 	path = os/service
 	url = git@github.com:multiverse-os/service.git
-[submodule "app"]
-	path = app
-	url = git@github.com:multiverse-os/maglev.git
