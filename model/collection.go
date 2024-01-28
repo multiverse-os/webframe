@@ -34,11 +34,16 @@ type Collections []*Collection
 // TODO: This is a good direction; just feel it out, it falls into place as you
 // design it good.
 type Collection struct {
-	Model *Model
+	Database *database.Database
 
-	Instance
+	//Instance
 
-	Name    string // TODO: Its currently 1 big key/value, but we will use the byte version of the name and prefix it to records keys with '#{collection.Name-#{id}'
+	// TODO: Would be nice to have a linked list combined with radix for looking
+	// up records by ID.
+
+	// TODO: Its currently 1 big key/value, but we will use the byte version of
+	// the name and prefix it to records keys with '#{collection.Name-#{id}'
+	Name    string
 	keys    []Key
 	Records []*Record
 	// Maybe like LastCreated, Last Modified; but these would provide us the
@@ -47,7 +52,6 @@ type Collection struct {
 	// Also may solve GLOBAL problem; we have a database variable ( then each
 	// model can be stored any way desirable (including using remote API
 	// eventually).
-	Database      *database.Database
 	LastUpdatedAt time.Time
 }
 
@@ -56,21 +60,21 @@ type Collection struct {
 
 // TODO: Yeah something like this needs to be called
 // TODO: This is fucked,
-func (db Database) NewCollection(name string) Collection {
-	collection := Collection{
-		Database: db,
-		Name:     name,
+func NewCollection(name string) Collection {
+	return Collection{
+		Name: name,
 	}
-
-	//Collections = append(collections, &collection)
-	return collection
 }
 
-func (c *Collection) UseDB(db *database.Database) Collection {
+func (c *Collection) UseDB(db *database.Database) *Collection {
 	c.Database = db
+	//Collections = append(collections, &collection)
 	return c
 }
 
+// TODO: we are already converting the ID to binary, we could base64 it and
+// even thow in the time then we can order by date easily, but we need a way
+// to select ranges easier
 func (c Collection) Id() []byte {
 	total := len(c.Name)
 	for index, nameRune := range c.Name {
@@ -96,10 +100,13 @@ func (c Collection) Id() []byte {
 // helps reduce the overlap; though doesnt resolve user = resu... so need
 // something about position too.. len + (pos + ascii#)
 //
+// TODO: So thius works, we should be replacing our prefix with this, then we
+// can do must faster lookups
+//
 //	user = 4 + (1 * 117) + (2 * 115) + (3 * 101) + (4 * 114) = 1110
 //	resu = 4 + (1 * 114) + (2 * 101) + (3 * 115) + (4 * 117) = 686
 func (c Collection) GenerateId() muid.Id {
-	return GenerateId().Prefix(self.Name + ".")
+	return GenerateId().Prefix(c.Name + ".")
 }
 
 //func (c Collection) Keys() {

@@ -2,6 +2,7 @@ package webframe
 
 import (
 	database "github.com/multiverse-os/webframe/database"
+	"github.com/multiverse-os/webframe/database/keyvalue"
 )
 
 const (
@@ -47,11 +48,11 @@ func (f *Framework) KV(storeType database.StoreType) *database.Database {
 }
 
 // TODO: This simplifies initializing each database.
-func (f *Framework) InitializeDBs() []*database.Database {
+func (f *Framework) InitializeDBs() *Framework {
 	f.KV(ModelStore)
 	f.KV(CacheStore)
 	f.KV(SessionStore)
-	return f.databases
+	return f
 }
 
 // TODO: Init to default db type for Model type
@@ -64,15 +65,15 @@ func (f *Framework) DB(storeType database.StoreType) *database.Database {
 
 // TODO: Id like to change the names, like app.Cache or app.Sessions
 // and this should be maybe Database()
-func (f *Framework) ModelDB() *database.Database {
+func (f *Framework) ModelDB() keyvalue.Database {
 	return f.DB(ModelStore).Store
 }
 
-func (f *Framework) Cache() *database.Database {
+func (f *Framework) Cache() keyvalue.Database {
 	return f.DB(CacheStore).Store
 }
 
-func (f *Framework) Sessions() *database.Database {
+func (f *Framework) Sessions() keyvalue.Database {
 	return f.DB(SessionStore).Store
 }
 

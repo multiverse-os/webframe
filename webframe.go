@@ -1,7 +1,6 @@
 package webframe
 
 import (
-	"fmt"
 	"math/rand"
 	"strings"
 	"time"
@@ -9,11 +8,11 @@ import (
 	config "github.com/multiverse-os/webframe/config"
 	database "github.com/multiverse-os/webframe/database"
 	io "github.com/multiverse-os/webframe/io"
+	"github.com/multiverse-os/webframe/model"
 	filesystem "github.com/multiverse-os/webframe/os/filesystem"
 	router "github.com/multiverse-os/webframe/router"
 	server "github.com/multiverse-os/webframe/server"
 
-	ansi "github.com/multiverse-os/ansi"
 	service "github.com/multiverse-os/service"
 )
 
@@ -37,6 +36,10 @@ type Framework struct {
 	// pkg that has Init(), and tied into app because app would be where the
 	// initialzation happens for both types
 
+	// TODO: I would like to have sub-processes eventually and be able to manage
+	// them or maybe it would be better to have a rack like system to segregate
+	// the http server then we can put udp or tcp infront of it and pull all
+	// that logic out of the framework which would be ideal
 	Process     *service.Process
 	Directories filesystem.Directories
 	Outputs     io.Outputs
@@ -50,7 +53,7 @@ type Framework struct {
 	servers   map[server.Type]server.Server
 
 	Controllers map[string]Controller
-	Models      map[string]Model
+	Models      map[string]*Model
 
 	// TODO: Jobs should probably be a channel?
 	//Jobs []Job
@@ -63,8 +66,13 @@ type Framework struct {
 
 // TODO: id still prefer if this was framework.App not framework.Framework
 func Init(cfg *config.Settings) Framework {
+	// TODO: We want to always guarantee that no one ever runs a web server as
+	// root. This is one of the biggest mistakes a web administrator can make
+	// and so we force security.
 	service.DropPrivs()
 	//service.SeedRandom()
+	// TODO: The idea was to put this in service since it should always be done
+	// and ideally by process
 	rand.Seed(time.Now().UnixNano())
 
 	cfg = config.Validate(cfg)
@@ -76,7 +84,7 @@ func Init(cfg *config.Settings) Framework {
 		servers:     make(map[server.Type]server.Server),
 		databases:   make(map[database.StoreType]*database.Database),
 		Controllers: make(map[string]Controller),
-		Models:      make(map[string]Model),
+		Models:      make(map[string]*Model),
 		// TODO: We should establish some standardized middleware we attach for
 		// greater control over our routing infrastructure
 		Router: router.New(),
@@ -87,34 +95,31 @@ func Init(cfg *config.Settings) Framework {
 	return framework
 }
 
-func (f *Framework) NewDatabase(name string) {
-	name = strings.ToLower(name)
-	f.databases[database.Model] = &database.Database{
-		Name: name,
-	}
-}
+//func (f *Framework) NewDatabase(name string) {
+//	name = strings.ToLower(name)
+//	f.databases[Model] = &database.Database{
+//		Name: name,
+//	}
+//}
 
 // TODO: Need at least database, well no i guess it has to be the model database
 func (f *Framework) NewModel(name string) {
 	name = strings.ToLower(name)
-	f.Models[name] = Model{
-		Name:      name,
+	f.Models[name] = &Model{
+		Collection: &model.Collection{
+			Name: name,
+		},
 		Framework: f,
 	}
 }
 
+// TODO: This probably works because we have the logic of controller stored too
+//
+//	much in the framework but I may ahve a compromise
 func (f *Framework) NewController(name string) {
 	name = strings.ToLower(name)
 	f.Controllers[name] = Controller{
 		Name:      name,
 		Framework: f,
 	}
-}
-
-func (f Framework) Benchmark(startedAt time.Time, description string) {
-	f.Outputs.Write(
-		ansi.Bold("Benchmark"),
-		ansi.Green(description),
-		io.Enclose(ansi.Green(fmt.Sprintf("%v", time.Since(startedAt)))),
-	)
 }

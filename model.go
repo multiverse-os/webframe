@@ -2,28 +2,11 @@ package webframe
 
 import "github.com/multiverse-os/webframe/model"
 
-// TODO: Looks like much of this should be stuck in model folder so its
-// model.Thing instead of framework.Model framework.Attribute etc
+type Model struct {
+	*model.Collection
 
-// TODO: Just look to CLI data, we already started on a simplified type system
-// for situations like this, get us close enough then just handle the rest in
-// application
-
-// TODO: Then maybe we save serialize into BSON or CBOR to create our own object
-//
-//	store
-//
-// TODO: We will want the ability to flatten a model with embedded or
-// relationships, so we can edit a single value and re-construct the object
-// without needing to overwrite everything, if we keep everything bitwise
-// separate we can do this easier.
-
-// TODO: Honestly this logic really should go into model if we want a
-// an independent which would be ideal, then this logic should go in database
-// or model, and then model in database, to create basically an ORM that is
-// very active record like, but its also okay if its not independent
-
-type Model *model.Collection
+	Framework *Framework
+}
 
 //type Model struct {
 //	Framework *Framework
