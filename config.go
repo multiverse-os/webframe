@@ -1,7 +1,7 @@
-package webkit
+package webframe
 
 import (
-	config "github.com/multiverse-os/webkit/config"
+	config "github.com/multiverse-os/webframe/config"
 )
 
 type Config *config.Settings

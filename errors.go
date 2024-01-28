@@ -1,4 +1,4 @@
-package webkit
+package webframe
 
 import "errors"
 

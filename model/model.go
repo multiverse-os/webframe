@@ -2,6 +2,8 @@ package model
 
 import (
 	"bytes"
+	// TODO: For now we will just use Gob for simplicity then we can add more
+	// options like CBOR or BSON later
 	"encoding/binary"
 	"encoding/gob"
 	"fmt"

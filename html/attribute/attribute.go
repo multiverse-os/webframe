@@ -4,8 +4,8 @@ import (
 	"strconv"
 	"strings"
 
-	entity "github.com/multiverse-os/webkit/html/entity"
-	text "github.com/multiverse-os/webkit/html/text"
+	entity "github.com/multiverse-os/webframe/html/entity"
+	text "github.com/multiverse-os/webframe/html/text"
 )
 
 const defaultRowValue = "3"

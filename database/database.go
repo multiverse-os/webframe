@@ -5,7 +5,7 @@ package database
 // TODO: I agree with this and not the mapb ullshit
 
 import (
-	keyvalue "github.com/multiverse-os/webkit/database/keyvalue"
+	keyvalue "github.com/multiverse-os/webframe/database/keyvalue"
 )
 
 // Alias

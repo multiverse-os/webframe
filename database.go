@@ -1,7 +1,7 @@
-package webkit
+package webframe
 
 import (
-	database "github.com/multiverse-os/webkit/database"
+	database "github.com/multiverse-os/webframe/database"
 )
 
 const (

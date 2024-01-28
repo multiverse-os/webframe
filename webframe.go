@@ -1,4 +1,4 @@
-package webkit
+package webframe
 
 import (
 	"fmt"
@@ -6,12 +6,12 @@ import (
 	"strings"
 	"time"
 
-	config "github.com/multiverse-os/webkit/config"
-	database "github.com/multiverse-os/webkit/database"
-	io "github.com/multiverse-os/webkit/io"
-	filesystem "github.com/multiverse-os/webkit/os/filesystem"
-	router "github.com/multiverse-os/webkit/router"
-	server "github.com/multiverse-os/webkit/server"
+	config "github.com/multiverse-os/webframe/config"
+	database "github.com/multiverse-os/webframe/database"
+	io "github.com/multiverse-os/webframe/io"
+	filesystem "github.com/multiverse-os/webframe/os/filesystem"
+	router "github.com/multiverse-os/webframe/router"
+	server "github.com/multiverse-os/webframe/server"
 
 	ansi "github.com/multiverse-os/ansi"
 	service "github.com/multiverse-os/service"

@@ -1,7 +1,7 @@
-package webkit
+package webframe
 
 import (
-	server "github.com/multiverse-os/webkit/server"
+	server "github.com/multiverse-os/webframe/server"
 )
 
 func (f *Framework) HTTP() server.Server {

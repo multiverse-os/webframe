@@ -3,7 +3,7 @@ package text
 import (
 	"strings"
 
-	entity "github.com/multiverse-os/webkit/html/entity"
+	entity "github.com/multiverse-os/webframe/html/entity"
 )
 
 type EnclosureComponent bool

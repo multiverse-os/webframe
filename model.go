@@ -1,6 +1,6 @@
-package webkit
+package webframe
 
-import database "github.com/multiverse-os/webkit/database"
+import database "github.com/multiverse-os/webframe/database"
 
 // TODO: Just look to CLI data, we already started on a simplified type system
 // for situations like this, get us close enough then just handle the rest in

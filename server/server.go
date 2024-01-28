@@ -3,8 +3,8 @@ package server
 import (
 	"errors"
 
-	router "github.com/multiverse-os/webkit/router"
-	http "github.com/multiverse-os/webkit/server/http"
+	router "github.com/multiverse-os/webframe/router"
+	http "github.com/multiverse-os/webframe/server/http"
 )
 
 type Type uint

@@ -1,8 +1,8 @@
-package webkit
+package webframe
 
 import (
-	config "github.com/multiverse-os/webkit/config"
-	io "github.com/multiverse-os/webkit/io"
+	config "github.com/multiverse-os/webframe/config"
+	io "github.com/multiverse-os/webframe/io"
 )
 
 func DefaultOutputs(cfg *config.Settings) io.Outputs {
