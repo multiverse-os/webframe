@@ -5,7 +5,7 @@ import "time"
 //import (
 //	"time"
 //
-//  record "github.com/multiverse-os/webkit/model/record"
+//  record "github.com/multiverse-os/webframe/model/record"
 //)
 //
 //type SortDirection uint8
