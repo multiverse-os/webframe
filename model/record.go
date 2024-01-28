@@ -1,11 +1,10 @@
 package model
 
 import (
-	"bytes"
+
 	// TODO: For now we will just use Gob for simplicity then we can add more
 	// options like CBOR or BSON later
-	"encoding/binary"
-	"encoding/gob"
+
 	"fmt"
 	"time"
 
@@ -15,6 +14,13 @@ import (
 	// are no third party dependencies.
 	muid "github.com/multiverse-os/muid"
 )
+
+// TODO: We used model.Record to avoid the annoyance of model.Model; but when
+// brainstorming recently, I realized that essentially a model is a collection
+// but a collection may not be only 1 model. but for now it is. so lets build
+// around that concept. Model will use collection and we move all our things
+// from model to that then just reference it as a type for aliasing and then
+// we can keep all the logic in this submodule
 
 type Database struct {
 	*database.Database
@@ -44,110 +50,6 @@ func (self Key) CollectionName() string {
 // TODO: Build methods for key, to filter, conversion, etc. (remember we are
 // using muid.Id, so we should be able to get the bytes to muid id type so we
 // can extract out the timestamp for example
-
-// TODO: This is a good direction; just feel it out, it falls into place as you
-// design it good.
-type Collection struct {
-	Instance
-
-	Name    string // TODO: Its currently 1 big key/value, but we will use the byte version of the name and prefix it to records keys with '#{collection.Name-#{id}'
-	keys    []Key
-	Records []*Record
-	// Maybe like LastCreated, Last Modified; but these would provide us the
-	// structure we need for tracking them and handles for various activites.
-
-	// Also may solve GLOBAL problem; we have a database variable ( then each
-	// model can be stored any way desirable (including using remote API
-	// eventually).
-	Database *database.Database
-}
-
-type Collections []*Collection
-
-/// TODO: What if we could do New for collection ON THE BLOODY DATABASE OBJECT!
-//Or the app object
-
-// TODO: Yeah something like this needs to be called
-// TODO: This is fucked,
-func (db Database) NewCollection(name string) Collection {
-	collection := Collection{
-		Database: db,
-		Name:     name,
-	}
-
-	//Collections = append(collections, &collection)
-	return collection
-}
-
-func (c Collection) UseDB(db *database.Database) Collection {
-	c.Database = db
-	return c
-}
-
-func (c Collection) Id() []byte {
-	total := len(c.Name)
-	for index, nameRune := range c.Name {
-		total += index * int(nameRune)
-	}
-	binaryBuffer := new(bytes.Buffer)
-	err := binary.Write(binaryBuffer, binary.LittleEndian, total)
-	if err != nil {
-		panic(err)
-	}
-	return binaryBuffer.Bytes()
-}
-
-// TODO: Would REALLy like a better way then appending full name, would prefer
-// some sort of way to reduce to fixed length. or even an int we track to some
-// like map. So we have a map in this package like Models when we create a new
-// collection, then we append to Models, and that stores the Id we use to
-// prefix. Ideally something like 0..99 but it would have to remain fixed across
-// IDEA could be for example int value = len(self.Name) then ascii value for
-// each position. This would give us a unique value that does not have overlap
-// and it would be regeneratable. Length may seem unecesary but if you have
-// different letter combos that add up the the same amount, using the length
-// helps reduce the overlap; though doesnt resolve user = resu... so need
-// something about position too.. len + (pos + ascii#)
-//
-//	user = 4 + (1 * 117) + (2 * 115) + (3 * 101) + (4 * 114) = 1110
-//	resu = 4 + (1 * 114) + (2 * 101) + (3 * 115) + (4 * 117) = 686
-func (c Collection) GenerateId() muid.Id {
-	return GenerateId().Prefix(self.Name + ".")
-}
-
-//func (c Collection) Keys() {
-//	for key := range Database.Store.Keys() {
-//		if len(c.Name) < len(key) && bytes.Compare(key[:len(c.Name)], []byte(c.Name)) == 0 {
-//			fmt.Printf("existing key IN collection: %v\n", string(key))
-//		} else {
-//			fmt.Printf("existing key NOT IN collection: %v\n", string(key))
-//		}
-//	}
-//	fmt.Printf("got all keys!\n")
-//
-//}
-
-type Instance interface{}
-
-func Encode(obj interface{}) ([]byte, error) {
-	byteBuffer := new(bytes.Buffer)
-	if err := gob.NewEncoder(byteBuffer).Encode(obj); err != nil {
-		return nil, err
-	}
-	return byteBuffer.Bytes(), nil
-}
-
-func Decode(data []byte, value interface{}) error {
-	buf := bytes.NewBuffer(data)
-	return gob.NewDecoder(buf).Decode(value)
-}
-
-//type Record struct {
-//	Collection *Collection
-//	Name       string
-//	Id         record.Id
-//	Data       record.Data
-//}
 
 type Record struct {
 	Collection

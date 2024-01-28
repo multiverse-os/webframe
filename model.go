@@ -1,6 +1,6 @@
 package webframe
 
-import database "github.com/multiverse-os/webframe/database"
+import "github.com/multiverse-os/webframe/model"
 
 // TODO: Looks like much of this should be stuck in model folder so its
 // model.Thing instead of framework.Model framework.Attribute etc
@@ -17,42 +17,50 @@ import database "github.com/multiverse-os/webframe/database"
 // relationships, so we can edit a single value and re-construct the object
 // without needing to overwrite everything, if we keep everything bitwise
 // separate we can do this easier.
-type Model struct {
-	Framework *Framework
-	Database  *database.Database
 
-	// TODO: This is our crude way of trying to work in a linked list
-	// functionality at the base level
-	Index uint
-	// TODO: We will encode the timestamp into the ID so we can sort by ID and
-	// get time sorting.
-	ID   []byte
-	Name string
+// TODO: Honestly this logic really should go into model if we want a
+// an independent which would be ideal, then this logic should go in database
+// or model, and then model in database, to create basically an ORM that is
+// very active record like, but its also okay if its not independent
 
-	// TODO: What else would be really common? state machine?
+type Model *model.Collection
 
-	//  the obvious thing would seem to be methods; like User.Find(user_id) =>
-	//  User{id: user_id}
-	// If we store methods, it does make it easier to lock them down by saying
-	// which controllers can even use certain methods
-
-	Methods map[string]*Method
-
-	Attributes map[string]*Attribute
-
-	BeforeCreate []func()
-	AfterCreate  []func()
-
-	BeforeSave []func()
-	AfterSave  []func()
-}
-
-func (m *Model) Attribute(attributeName string, attribute *Attribute) *Model {
-	m.Attributes[attributeName] = attribute
-	return m
-}
-
-func (m *Model) Method(methodName string, method *Method) *Model {
-	m.Methods[methodName] = method
-	return m
-}
+//type Model struct {
+//	Framework *Framework
+//	Database  *database.Database
+//
+//	// TODO: This is our crude way of trying to work in a linked list
+//	// functionality at the base level
+//	Index uint
+//	// TODO: We will encode the timestamp into the ID so we can sort by ID and
+//	// get time sorting.
+//	ID   []byte
+//	Name string
+//
+//	// TODO: What else would be really common? state machine?
+//
+//	//  the obvious thing would seem to be methods; like User.Find(user_id) =>
+//	//  User{id: user_id}
+//	// If we store methods, it does make it easier to lock them down by saying
+//	// which controllers can even use certain methods
+//
+//	Methods map[string]*Method
+//
+//	Attributes map[string]*Attribute
+//
+//	BeforeCreate []func()
+//	AfterCreate  []func()
+//
+//	BeforeSave []func()
+//	AfterSave  []func()
+//}
+//
+//func (m *Model) Attribute(attributeName string, attribute *Attribute) *Model {
+//	m.Attributes[attributeName] = attribute
+//	return m
+//}
+//
+//func (m *Model) Method(methodName string, method *Method) *Model {
+//	m.Methods[methodName] = method
+//	return m
+//}
