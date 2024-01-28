@@ -7,7 +7,6 @@ require (
 	github.com/akrylysov/pogreb v0.10.2
 	github.com/multiverse-os/muid v0.1.0
 	github.com/multiverse-os/service v0.1.2
-	github.com/multiverse-os/webkit v0.1.5
 	golang.org/x/sys v0.15.0
 	gopkg.in/yaml.v2 v2.4.0
 )
